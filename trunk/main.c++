@@ -46,7 +46,12 @@ int j;
  */
 int v;
 
+/**
+ * maxlength function
+ *computes the max length of the number N for 3n+1 problem
+ */
 int maxLength(int n){
+assert(n>=1);
 int ctr = 1;
 while(n!=1){
    if(n%2==0){
@@ -55,6 +60,7 @@ else{
 n = 3*n+1; ctr++;
 }
 	}
+assert(ctr>=1);
 return ctr;
 }
 /**
@@ -75,10 +81,18 @@ bool read (std::istream& in) {
 void eval () {
   v = 0;
 int maxCycleLength = 0;
-for(int a = i; a<=j; a++){
-maxCycleLength  = maxLength(a);
-if(maxCycleLength >v) v = maxCycleLength;
-}
+if(i<=j){
+	for(int a = i; a<=j; a++){
+		maxCycleLength  = maxLength(a);
+		if(maxCycleLength >v) v = maxCycleLength;
+		}
+	}
+else{
+	for(int a = j; a<=i; a++){
+		maxCycleLength  = maxLength(a);
+		if(maxCycleLength >v) v = maxCycleLength;
+		}
+	}
 }
 /**
  * prints the values of i, j, and v
@@ -98,12 +112,7 @@ void print (std::ostream& out) {
  */
 int main () {
     using namespace std;
-	/*cin >> i >> j;
-eval();
-cout << v << endl;
-cout << maxLength(3);*/
     ios_base::sync_with_stdio(false);     // turn off synchronization with C I/O
-
     #ifdef TEST
         using namespace CppUnit;
         TextTestRunner tr;
