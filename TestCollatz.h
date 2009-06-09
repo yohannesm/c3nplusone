@@ -1,107 +1,142 @@
-<html>
-<head>
-  <title>TestCollatz.h</title>
-</head>
-<body bgcolor="#ffffff" text="#000000">
-<pre>
-<font color="#444444">// -------------------------------</font>
-<font color="#444444">// projects/c++/3n+1/TestCollatz.h</font>
-<font color="#444444">// Copyright (C) 2009</font>
-<font color="#444444">// Glenn P. Downing</font>
-<font color="#444444">// -------------------------------</font>
+// -------------------------------
+// projects/c++/3n+1/TestCollatz.h
+// Copyright (C) 2009
+// Glenn P. Downing
+// -------------------------------
 
-<font color="0000ff"><strong>#ifndef TestCollatz_h</strong></font>
-<font color="0000ff"><strong>#define TestCollatz_h</strong></font>
+#ifndef TestCollatz_h
+#define TestCollatz_h
 
-<font color="#444444">// --------</font>
-<font color="#444444">// includes</font>
-<font color="#444444">// --------</font>
+// --------
+// includes
+// --------
 
-<font color="0000ff"><strong>#include <font color="#008000">&lt;sstream&gt;</font> <font color="#444444">// istringtstream, ostringstream</font></strong></font>
-<font color="0000ff"><strong>#include <font color="#008000">&lt;string&gt;</font>  <font color="#444444">// ==</font></strong></font>
+#include <sstream> // istringtstream, ostringstream
+#include <string>  // ==
 
-<font color="0000ff"><strong>#include <font color="#008000">&quot;cppunit/TestFixture.h&quot;</font>             <font color="#444444">// TestFixture</font></strong></font>
-<font color="0000ff"><strong>#include <font color="#008000">&quot;cppunit/extensions/HelperMacros.h&quot;</font> <font color="#444444">// CPPUNIT_TEST, CPPUNIT_TEST_SUITE, CPPUNIT_TEST_SUITE_END</font></strong></font>
+#include "cppunit/TestFixture.h"             // TestFixture
+#include "cppunit/extensions/HelperMacros.h" // CPPUNIT_TEST, CPPUNIT_TEST_SUITE, CPPUNIT_TEST_SUITE_END
 
-<strong>using</strong> <strong>namespace</strong> <font color="#2040a0">CppUnit</font><font color="4444FF">;</font>
+using namespace CppUnit;
 
-<font color="#444444">// -----------</font>
-<font color="#444444">// TestCollatz</font>
-<font color="#444444">// -----------</font>
+// -----------
+// TestCollatz
+// -----------
 
-<strong>struct</strong> <font color="#2040a0">TestCollatz</font> <font color="4444FF">:</font> <font color="#2040a0">TestFixture</font> <font color="4444FF"><strong>{</strong></font>
-    <font color="#444444">// ----</font>
-    <font color="#444444">// read</font>
-    <font color="#444444">// ----</font>
+struct TestCollatz : TestFixture {
+    // ----
+    // read
+    // ----
 
-    <strong>void</strong> <font color="#2040a0">test_read</font> <font color="4444FF">(</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
-        <font color="#2040a0">std</font><font color="4444FF">:</font><font color="4444FF">:</font><font color="#2040a0">istringstream</font> <font color="#2040a0">in</font><font color="4444FF">(</font><font color="#008000">&quot;1 10<font color="#77dd77">\n</font>&quot;</font><font color="4444FF">)</font><font color="4444FF">;</font>
-        <strong>bool</strong> <font color="#2040a0">b</font> <font color="4444FF">=</font> <font color="#2040a0">read</font><font color="4444FF">(</font><font color="#2040a0">in</font><font color="4444FF">)</font><font color="4444FF">;</font>
-        <font color="#2040a0">CPPUNIT_ASSERT</font><font color="4444FF">(</font><font color="#2040a0">b</font> <font color="4444FF">=</font><font color="4444FF">=</font> <strong>true</strong><font color="4444FF">)</font><font color="4444FF">;</font>
-        <font color="#2040a0">CPPUNIT_ASSERT</font><font color="4444FF">(</font><font color="#2040a0">i</font> <font color="4444FF">=</font><font color="4444FF">=</font>    <font color="#FF0000">1</font><font color="4444FF">)</font><font color="4444FF">;</font>
-        <font color="#2040a0">CPPUNIT_ASSERT</font><font color="4444FF">(</font><font color="#2040a0">j</font> <font color="4444FF">=</font><font color="4444FF">=</font>   <font color="#FF0000">10</font><font color="4444FF">)</font><font color="4444FF">;</font><font color="4444FF"><strong>}</strong></font>
+    void test_read () {
+        std::istringstream in("1 10\n");
+        bool b = read(in);
+        CPPUNIT_ASSERT(b == true);
+        CPPUNIT_ASSERT(i ==    1);
+        CPPUNIT_ASSERT(j ==   10);}
+    void test_read1 () {
+        std::istringstream in("1 100\n");
+        bool b = read(in);
+        CPPUNIT_ASSERT(b == true);
+        CPPUNIT_ASSERT(i ==    1);
+        CPPUNIT_ASSERT(j ==   100);}
+    void test_read2 () {
+        std::istringstream in("201 210\n");
+        bool b = read(in);
+        CPPUNIT_ASSERT(b == true);
+        CPPUNIT_ASSERT(i ==    201);
+        CPPUNIT_ASSERT(j ==   210);}
+    void test_read3 () {
+        std::istringstream in("5 999\n");
+        bool b = read(in);
+        CPPUNIT_ASSERT(b == true);
+        CPPUNIT_ASSERT(i ==    5);
+        CPPUNIT_ASSERT(j ==   999);}
+    // ----
+    // eval
+    // ----
 
-    <font color="#444444">// ----</font>
-    <font color="#444444">// eval</font>
-    <font color="#444444">// ----</font>
+    void test_eval1 () {
+        i =  1;
+        j = 10;
+        v =  0;
+        eval();
+        CPPUNIT_ASSERT(v == 20);}
 
-    <strong>void</strong> <font color="#2040a0">test_eval1</font> <font color="4444FF">(</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
-        <font color="#2040a0">i</font> <font color="4444FF">=</font>  <font color="#FF0000">1</font><font color="4444FF">;</font>
-        <font color="#2040a0">j</font> <font color="4444FF">=</font> <font color="#FF0000">10</font><font color="4444FF">;</font>
-        <font color="#2040a0">v</font> <font color="4444FF">=</font>  <font color="#FF0000">0</font><font color="4444FF">;</font>
-        <font color="#2040a0">eval</font><font color="4444FF">(</font><font color="4444FF">)</font><font color="4444FF">;</font>
-        <font color="#2040a0">CPPUNIT_ASSERT</font><font color="4444FF">(</font><font color="#2040a0">v</font> <font color="4444FF">=</font><font color="4444FF">=</font> <font color="#FF0000">20</font><font color="4444FF">)</font><font color="4444FF">;</font><font color="4444FF"><strong>}</strong></font>
+    void test_eval2 () {
+        i = 100;
+        j = 200;
+        v =   0;
+        eval();
+        CPPUNIT_ASSERT(v == 125);}
 
-    <strong>void</strong> <font color="#2040a0">test_eval2</font> <font color="4444FF">(</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
-        <font color="#2040a0">i</font> <font color="4444FF">=</font> <font color="#FF0000">100</font><font color="4444FF">;</font>
-        <font color="#2040a0">j</font> <font color="4444FF">=</font> <font color="#FF0000">200</font><font color="4444FF">;</font>
-        <font color="#2040a0">v</font> <font color="4444FF">=</font>   <font color="#FF0000">0</font><font color="4444FF">;</font>
-        <font color="#2040a0">eval</font><font color="4444FF">(</font><font color="4444FF">)</font><font color="4444FF">;</font>
-        <font color="#2040a0">CPPUNIT_ASSERT</font><font color="4444FF">(</font><font color="#2040a0">v</font> <font color="4444FF">=</font><font color="4444FF">=</font> <font color="#FF0000">125</font><font color="4444FF">)</font><font color="4444FF">;</font><font color="4444FF"><strong>}</strong></font>
+    void test_eval3 () {
+        i = 201;
+        j = 210;
+        v =   0;
+        eval();
+        CPPUNIT_ASSERT(v == 89);}
 
-    <strong>void</strong> <font color="#2040a0">test_eval3</font> <font color="4444FF">(</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
-        <font color="#2040a0">i</font> <font color="4444FF">=</font> <font color="#FF0000">201</font><font color="4444FF">;</font>
-        <font color="#2040a0">j</font> <font color="4444FF">=</font> <font color="#FF0000">210</font><font color="4444FF">;</font>
-        <font color="#2040a0">v</font> <font color="4444FF">=</font>   <font color="#FF0000">0</font><font color="4444FF">;</font>
-        <font color="#2040a0">eval</font><font color="4444FF">(</font><font color="4444FF">)</font><font color="4444FF">;</font>
-        <font color="#2040a0">CPPUNIT_ASSERT</font><font color="4444FF">(</font><font color="#2040a0">v</font> <font color="4444FF">=</font><font color="4444FF">=</font> <font color="#FF0000">89</font><font color="4444FF">)</font><font color="4444FF">;</font><font color="4444FF"><strong>}</strong></font>
+    void test_eval4 () {
+        i =  900;
+        j = 1000;
+        v =    0;
+        eval();
+        CPPUNIT_ASSERT(v == 174);}
 
-    <strong>void</strong> <font color="#2040a0">test_eval4</font> <font color="4444FF">(</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
-        <font color="#2040a0">i</font> <font color="4444FF">=</font>  <font color="#FF0000">900</font><font color="4444FF">;</font>
-        <font color="#2040a0">j</font> <font color="4444FF">=</font> <font color="#FF0000">1000</font><font color="4444FF">;</font>
-        <font color="#2040a0">v</font> <font color="4444FF">=</font>    <font color="#FF0000">0</font><font color="4444FF">;</font>
-        <font color="#2040a0">eval</font><font color="4444FF">(</font><font color="4444FF">)</font><font color="4444FF">;</font>
-        <font color="#2040a0">CPPUNIT_ASSERT</font><font color="4444FF">(</font><font color="#2040a0">v</font> <font color="4444FF">=</font><font color="4444FF">=</font> <font color="#FF0000">174</font><font color="4444FF">)</font><font color="4444FF">;</font><font color="4444FF"><strong>}</strong></font>
+    // -----
+    // print
+    // -----
 
-    <font color="#444444">// -----</font>
-    <font color="#444444">// print</font>
-    <font color="#444444">// -----</font>
+    void test_print () {
+        i =  1;
+        j = 10;
+        v = 20;
+        std::ostringstream out;
+        print(out);
+        CPPUNIT_ASSERT(out.str() == "1 10 20\n");}
 
-    <strong>void</strong> <font color="#2040a0">test_print</font> <font color="4444FF">(</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
-        <font color="#2040a0">i</font> <font color="4444FF">=</font>  <font color="#FF0000">1</font><font color="4444FF">;</font>
-        <font color="#2040a0">j</font> <font color="4444FF">=</font> <font color="#FF0000">10</font><font color="4444FF">;</font>
-        <font color="#2040a0">v</font> <font color="4444FF">=</font> <font color="#FF0000">20</font><font color="4444FF">;</font>
-        <font color="#2040a0">std</font><font color="4444FF">:</font><font color="4444FF">:</font><font color="#2040a0">ostringstream</font> <font color="#2040a0">out</font><font color="4444FF">;</font>
-        <font color="#2040a0">print</font><font color="4444FF">(</font><font color="#2040a0">out</font><font color="4444FF">)</font><font color="4444FF">;</font>
-        <font color="#2040a0">CPPUNIT_ASSERT</font><font color="4444FF">(</font><font color="#2040a0">out</font>.<font color="#2040a0">str</font><font color="4444FF">(</font><font color="4444FF">)</font> <font color="4444FF">=</font><font color="4444FF">=</font> <font color="#008000">&quot;1 10 20<font color="#77dd77">\n</font>&quot;</font><font color="4444FF">)</font><font color="4444FF">;</font><font color="4444FF"><strong>}</strong></font>
+    void test_print1 () {
+        i =  1;
+        j = 10;
+        v = 20;
+        std::ostringstream out;
+        print(out);
+        CPPUNIT_ASSERT(out.str() == "100 200 125\n");}
 
-    <font color="#444444">// -----</font>
-    <font color="#444444">// suite</font>
-    <font color="#444444">// -----</font>
+    void test_print2 () {
+        i =  1;
+        j = 10;
+        v = 20;
+        std::ostringstream out;
+        print(out);
+        CPPUNIT_ASSERT(out.str() == "201 210 89\n");}
 
-    <font color="#2040a0">CPPUNIT_TEST_SUITE</font><font color="4444FF">(</font><font color="#2040a0">TestCollatz</font><font color="4444FF">)</font><font color="4444FF">;</font>
-    <font color="#2040a0">CPPUNIT_TEST</font><font color="4444FF">(</font><font color="#2040a0">test_read</font><font color="4444FF">)</font><font color="4444FF">;</font>
-    <font color="#2040a0">CPPUNIT_TEST</font><font color="4444FF">(</font><font color="#2040a0">test_eval1</font><font color="4444FF">)</font><font color="4444FF">;</font>
-    <font color="#2040a0">CPPUNIT_TEST</font><font color="4444FF">(</font><font color="#2040a0">test_eval2</font><font color="4444FF">)</font><font color="4444FF">;</font>
-    <font color="#2040a0">CPPUNIT_TEST</font><font color="4444FF">(</font><font color="#2040a0">test_eval3</font><font color="4444FF">)</font><font color="4444FF">;</font>
-    <font color="#2040a0">CPPUNIT_TEST</font><font color="4444FF">(</font><font color="#2040a0">test_eval4</font><font color="4444FF">)</font><font color="4444FF">;</font>
-    <font color="#2040a0">CPPUNIT_TEST</font><font color="4444FF">(</font><font color="#2040a0">test_print</font><font color="4444FF">)</font><font color="4444FF">;</font>
-    <font color="#2040a0">CPPUNIT_TEST_SUITE_END</font><font color="4444FF">(</font><font color="4444FF">)</font><font color="4444FF">;</font><font color="4444FF"><strong>}</strong></font><font color="4444FF">;</font>
+    void test_print3 () {
+        i =  1;
+        j = 10;
+        v = 20;
+        std::ostringstream out;
+        print(out);
+        CPPUNIT_ASSERT(out.str() == "900 1000 174\n");}
 
-<font color="0000ff"><strong>#endif <font color="#444444">// TestCollatz_h</font></strong></font>
+    // -----
+    // suite
+    // -----
 
-</pre>
-<hr>
-syntax highlighted by <a href="http://www.palfrader.org/code2html">Code2HTML</a>, v. 0.9.1
-</body>
-</html>
+    CPPUNIT_TEST_SUITE(TestCollatz);
+    CPPUNIT_TEST(test_read);
+    CPPUNIT_TEST(test_read1);
+    CPPUNIT_TEST(test_read2);
+    CPPUNIT_TEST(test_read3);
+    CPPUNIT_TEST(test_eval1);
+    CPPUNIT_TEST(test_eval2);
+    CPPUNIT_TEST(test_eval3);
+    CPPUNIT_TEST(test_eval4);
+    CPPUNIT_TEST(test_print);
+    CPPUNIT_TEST(test_print1);
+    CPPUNIT_TEST(test_print2);
+    CPPUNIT_TEST(test_print3);
+    CPPUNIT_TEST_SUITE_END();};
+
+#endif // TestCollatz_h
