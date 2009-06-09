@@ -84,6 +84,92 @@ struct TestCollatz : TestFixture {
         eval();
         CPPUNIT_ASSERT(v == 174);}
 
+    void test_eval5 () {
+        i =  200;
+        j = 20000;
+        v =    0;
+        eval();
+        CPPUNIT_ASSERT(v == 279);}
+
+    void test_eval6 () {
+        i = 1;
+        j = 1;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 1);}
+
+    void test_eval7 () {
+        i = 123;
+        j = 12345;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 268);}
+
+    void test_eval8 () {
+        i = 999;
+        j = 1000;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 112);}
+
+    void test_eval9 () {
+        i = 784;
+        j = 1899;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 182);}
+
+    void test_eval10 () {
+        i = 468;
+        j = 79833;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 351);}
+
+    void test_eval11 () {
+        i = 10000;
+        j = 10001;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 180);}
+
+    void test_eval12 () {
+        i = 100000;
+        j = 100001;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 129);}
+
+    void test_eval13 () {
+        i = 99999;
+        j = 99999;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 227);}
+
+    void test_eval14 () {
+        i = 999999;
+        j = 999999;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 259);}
+
+
+    void test_eval15 () { // does not work 
+        i = 400;
+        j = 400000;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 129);}
+
+    void test_eval16 () { // does not work 
+        i = 1;
+        j = 1000000;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 129);}
+
+
     // -----
     // print
     // -----
@@ -133,6 +219,18 @@ struct TestCollatz : TestFixture {
     CPPUNIT_TEST(test_eval2);
     CPPUNIT_TEST(test_eval3);
     CPPUNIT_TEST(test_eval4);
+    CPPUNIT_TEST(test_eval5);
+    CPPUNIT_TEST(test_eval6);
+    CPPUNIT_TEST(test_eval7);
+    CPPUNIT_TEST(test_eval8);
+    CPPUNIT_TEST(test_eval9);
+    CPPUNIT_TEST(test_eval10);
+    CPPUNIT_TEST(test_eval11);
+    CPPUNIT_TEST(test_eval12);
+    CPPUNIT_TEST(test_eval13);
+    CPPUNIT_TEST(test_eval14);
+    CPPUNIT_TEST(test_eval15);
+    CPPUNIT_TEST(test_eval16);
     CPPUNIT_TEST(test_print);
     CPPUNIT_TEST(test_print1);
     CPPUNIT_TEST(test_print2);
