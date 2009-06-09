@@ -1,8 +1,8 @@
-This article describes a possible solution to the Collatz conjecture for numbers between 0 to 1000000.
+This article describes a possible approach to solving the Collatz conjecture for numbers between 0 to 1000000.
 
 = Introduction =
 
-Add your content here.
+Collatz conjecture is an unsolvable problem posed by L. Collatz in 1937 (cite: Wolfram). However, the problem is known to terminate for all integers n such that n is an integer between 0 and 1000000 (cite: UVa). In this project, my partner and I have decided to use a cache to speed up the computation of the Collatz conjecture on numbers between 0 and 1000000.
 
 
 = Details =
