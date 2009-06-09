@@ -47,11 +47,32 @@ int j;
 int v;
 
 /**
+ * cache
+value of 1 maps to cache[0] so it will be off by one
+generally the value of n maps to cache[n-1]
+ */
+const int LENGTH_CACHE = 10000;
+int cache[LENGTH_CACHE];
+int maxLength(int n);
+
+
+void printCache() {
+
+for(int val = 0; val < 10000; val++)
+    std::cout << cache[val] << " " << val << std::endl;
+
+}
+
+
+/**
  * maxlength function
  *computes the max length of the number N for 3n+1 problem
  */
 int maxLength(int n){
 assert(n>=1);
+if(n < LENGTH_CACHE){
+   if(cache[n]!=0) return cache[n];
+}
 int ctr = 1;
 while(n!=1){
    if(n%2==0){
@@ -62,6 +83,13 @@ n = 3*n+1; ctr++;
 	}
 assert(ctr>=1);
 return ctr;
+}
+
+void computeValues() {
+for(int val = 1; val < 10000; val++){ 
+   cache[val] = maxLength(val);
+}
+
 }
 /**
  * reads an int into i and j
@@ -83,8 +111,8 @@ void eval () {
 int maxCycleLength = 0;
 if(i<=j){
 	for(int a = i; a<=j; a++){
-		maxCycleLength  = maxLength(a);
-		if(maxCycleLength >v) v = maxCycleLength;
+			maxCycleLength  = maxLength(a);
+			if(maxCycleLength > v) v = maxCycleLength;
 		}
 	}
 else{
@@ -118,12 +146,15 @@ int main () {
         TextTestRunner tr;
         tr.addTest(TestCollatz::suite());
         tr.run();
-    #else
+    #else	
+        computeValues();
         while (read(cin)) {
             eval();
             print(cout);}
+
     #endif // TEST
 
+		
     return 0;}
 
 
