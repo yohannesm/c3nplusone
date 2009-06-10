@@ -51,12 +51,12 @@ int v;
 value of 1 maps to cache[0] so it will be off by one
 generally the value of n maps to cache[n-1]
  */
-const int LENGTH_CACHE = 10001;
+const int LENGTH_CACHE = 100001;
 int cache[LENGTH_CACHE];
 int CycleLength(int n);
 
 void printCache() {
-for(int val = 9990; val < 10001; val++)
+for(int val = 9990; val < LENGTH_CACHE; val++)
     std::cout << "i= " << val << " maxL= " << cache[val] << " " << std::endl;
 }
 
