@@ -47,48 +47,80 @@ int j;
 int v;
 
 /**
- * cache
+ * cache : Intially stores the cycle lengths of integers between 1 and 10000. If values exceed 10000, then compute the cycle length and replace the least recetly used value in cache 
 value of 1 maps to cache[0] so it will be off by one
 generally the value of n maps to cache[n-1]
  */
-const int LENGTH_CACHE = 10000;
+const int LENGTH_CACHE = 100001;
 int cache[LENGTH_CACHE];
 int maxLength(int n);
 
 
+
+
 void printCache() {
 
-for(int val = 0; val < 10000; val++)
-    std::cout << cache[val] << " " << val << std::endl;
+for(int val = 0; val < 23; val++)
+    std::cout << "i= " << val << " maxL= " << cache[val] << " " << std::endl;
 
 }
 
 
 /**
- * maxlength function
+ * Cyclelength function
  *computes the max length of the number N for 3n+1 problem
  */
-int maxLength(int n){
+
+int CycleLength(int n){
 assert(n>=1);
-if(n < LENGTH_CACHE){
-   if(cache[n]!=0) return cache[n];
-}
 int ctr = 1;
 while(n!=1){
-   if(n%2==0){
+  if(n%2==0){
 	n = n/2; ctr++;	}
 else{
-n = 3*n+1; ctr++;
+n = (3*n+1)/2; ctr+= 2;
 }
 	}
 assert(ctr>=1);
 return ctr;
 }
 
-void computeValues() {
-for(int val = 1; val < 10000; val++){ 
-   cache[val] = maxLength(val);
+int CycleLengthwithCache(int n){
+assert(n>=1);
+if(n < LENGTH_CACHE){
+    //std::cout << "n = " << n << " " << cache[n];
+    return cache[n];}
+int ctr = 1;
+while(n!=1){
+if(n < LENGTH_CACHE){
+	//std::cout << "n = " << n << " " << cache[n] << std::endl;
+    return cache[n];}
+  else if(n%2==0){
+	n = n/2; ctr++;	}
+else{
+n = (3*n+1)/2; ctr+= 2;
 }
+	}
+assert(ctr>=1);
+return ctr;
+}
+
+/**
+ * compute the values for the cache. Each entry in the cache has the max cycle length of a range of 100 
+ */
+void computeCacheValues() {
+
+for(int ind = 1; ind < LENGTH_CACHE; ind++){
+    cache[ind] = CycleLength(ind); 
+}
+
+/*int index;
+while(index <= 10000){
+  for(int i = 0; i < 100; i++)
+	cache[index+i] = maxLength(index+i);
+
+index += 100;
+}*/
 
 }
 /**
@@ -111,16 +143,19 @@ void eval () {
 int maxCycleLength = 0;
 if(i<=j){
 	for(int a = i; a<=j; a++){
-			maxCycleLength  = maxLength(a);
+			//maxCycleLength  = CycleLength(a);
+			maxCycleLength  = CycleLengthwithCache(a);
 			if(maxCycleLength > v) v = maxCycleLength;
 		}
 	}
 else{
 	for(int a = j; a<=i; a++){
-		maxCycleLength  = maxLength(a);
+		//maxCycleLength  = CycleLength(a);
+		maxCycleLength  = CycleLengthwithCache(a);
 		if(maxCycleLength >v) v = maxCycleLength;
 		}
 	}
+assert(v>0);
 }
 /**
  * prints the values of i, j, and v
@@ -147,7 +182,8 @@ int main () {
         tr.addTest(TestCollatz::suite());
         tr.run();
     #else	
-        computeValues();
+	computeCacheValues();
+	//printCache();
         while (read(cin)) {
             eval();
             print(cout);}
