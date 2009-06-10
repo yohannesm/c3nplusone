@@ -51,26 +51,19 @@ int v;
 value of 1 maps to cache[0] so it will be off by one
 generally the value of n maps to cache[n-1]
  */
-const int LENGTH_CACHE = 100001;
+const int LENGTH_CACHE = 10001;
 int cache[LENGTH_CACHE];
-int maxLength(int n);
-
-
-
+int CycleLength(int n);
 
 void printCache() {
-
-for(int val = 0; val < 23; val++)
+for(int val = 9990; val < 10001; val++)
     std::cout << "i= " << val << " maxL= " << cache[val] << " " << std::endl;
-
 }
-
 
 /**
  * Cyclelength function
- *computes the max length of the number N for 3n+1 problem
+ *computes the  length of the number N for 3n+1 problem
  */
-
 int CycleLength(int n){
 assert(n>=1);
 int ctr = 1;
@@ -85,20 +78,28 @@ assert(ctr>=1);
 return ctr;
 }
 
+/**
+ * Cyclelength function
+ *computes the  length of the number N for 3n+1 problem
+ aided with a cache for faster computation
+ */
 int CycleLengthwithCache(int n){
 assert(n>=1);
-if(n < LENGTH_CACHE){
-    //std::cout << "n = " << n << " " << cache[n];
-    return cache[n];}
+
 int ctr = 1;
+if(n < LENGTH_CACHE){
+    //std::cout << "we use the cache" <<" n = " << n << " " << cache[n] << std::endl;
+    return cache[n];}
+
 while(n!=1){
 if(n < LENGTH_CACHE){
-	//std::cout << "n = " << n << " " << cache[n] << std::endl;
-    return cache[n];}
+	//std::cout << "we use the cache" <<" n = " << n << " " << cache[n] << std::endl;
+     return ctr += cache[n] - 1;}
   else if(n%2==0){
 	n = n/2; ctr++;	}
 else{
 n = (3*n+1)/2; ctr+= 2;
+
 }
 	}
 assert(ctr>=1);
@@ -106,7 +107,7 @@ return ctr;
 }
 
 /**
- * compute the values for the cache. Each entry in the cache has the max cycle length of a range of 100 
+ * compute the values for the cache. 
  */
 void computeCacheValues() {
 
@@ -143,7 +144,7 @@ void eval () {
 int maxCycleLength = 0;
 if(i<=j){
 	for(int a = i; a<=j; a++){
-			//maxCycleLength  = CycleLength(a);
+		       // maxCycleLength  = CycleLength(a);
 			maxCycleLength  = CycleLengthwithCache(a);
 			if(maxCycleLength > v) v = maxCycleLength;
 		}
