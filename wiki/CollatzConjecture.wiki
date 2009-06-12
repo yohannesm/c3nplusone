@@ -3,12 +3,13 @@ This article describes a possible approach to solving the Collatz conjecture for
 = Introduction =
 
 Collatz conjecture is an unsolvable problem posed by L. Collatz in 1937 (http://mathworld.wolfram.com/CollatzProblem.html). However, the problem is known to terminate for all integers n such that n is an integer between 1 and 1000000 (http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=3&page=show_problem&problem=36). 
-The objective of the problem is to determine the maximum cycle length in an interval of two positive integers between 1 and 1000000.
-
+For a given input of i and j, the objective of the problem is to determine the maximum cycle length for numbers between i and j (including i and j).
 
 = Details =
-Algorithm to determine the cycle length 
-For a given input n, determine whether n is even or odd. If n is even, divide n by 2 and if n is odd, n = 3*n+1. Continue this process until n is one. 
+
+==Algorithm to determine the cycle length==
+
+For a given input n, determine whether n is even or odd. If n is even, divide n by 2 and if n is odd,  n = 3*n+1. Continue this process until n is one. 
 
 For example, consider the cycle length computation of 5.
 
@@ -18,6 +19,10 @@ For example, consider the cycle length computation of 5.
 8/2 = 4
 4/2 = 2
 2/2 = 1
+
+Hence, the cycle length of 5 is 6.
+
+
 In order to the reduce the number of computations for odd numbers, we did n = (3*n+!)/2 and increased the counter for cycle length by 2.
 
 In this project, my partner and I have decided to use a cache to speed up the computation of the Collatz conjecture on numbers between 0 and 1000000.
