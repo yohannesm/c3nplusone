@@ -13,12 +13,12 @@ For a given input n, determine whether n is even or odd. If n is even, divide n 
 
 For example, consider the cycle length computation of 5.
 
-5
-5*3 + 1 = 16
-16/2 = 8
-8/2 = 4
-4/2 = 2
-2/2 = 1
+5 `*`
+5*3 + 1 = 16 `*`
+16/2 = 8 `*`
+8/2 = 4  `*`
+4/2 = 2 `*`
+2/2 = 1 `*`
 
 Hence, the cycle length of 5 is 6.
 
