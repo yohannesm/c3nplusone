@@ -51,27 +51,35 @@ int v;
 value of 1 maps to cache[0] so it will be off by one
 generally the value of n maps to cache[n-1]
  */
-const int LENGTH_CACHE = 100001;
+const int LENGTH_CACHE = 65001;
 int cache[LENGTH_CACHE];
 int CycleLength(int n);
 
+/*
+/**
+* Prints the values in cache. This method was used to assist in debugging.
+
+
 void printCache() {
-for(int val = 9990; val < LENGTH_CACHE; val++)
+for(int val = 1; val < LENGTH_CACHE; val++)
     std::cout << "i= " << val << " maxL= " << cache[val] << " " << std::endl;
 }
+*/
 
 /**
  * Cyclelength function
  *computes the  length of the number N for 3n+1 problem
+ *@param int n  
+ *@return Cycle length of the integer n computed without a cache
  */
 int CycleLength(int n){
 assert(n>=1);
 int ctr = 1;
 while(n!=1){
-  if(n%2==0){
-	n = n/2; ctr++;	}
+  if((n&1)==0){
+	n = (n >> 1); ctr++;}
 else{
-n = (3*n+1)/2; ctr+= 2;
+n = n + (n >> 1) + 1; ++++ctr;
 }
 	}
 assert(ctr>=1);
@@ -82,23 +90,23 @@ return ctr;
  * Cyclelength function
  *computes the  length of the number N for 3n+1 problem
  aided with a cache for faster computation
+ *@param int n  
+ *@return Cycle length of the integer n computed with the assistance of a cache  
  */
 int CycleLengthwithCache(int n){
 assert(n>=1);
 
 int ctr = 1;
-if(n < LENGTH_CACHE){
-    //std::cout << "we use the cache" <<" n = " << n << " " << cache[n] << std::endl;
+if(n < LENGTH_CACHE){    
     return cache[n];}
 
 while(n!=1){
-if(n < LENGTH_CACHE){
-	//std::cout << "we use the cache" <<" n = " << n << " " << cache[n] << std::endl;
+if(n < LENGTH_CACHE){	
      return ctr += cache[n] - 1;}
-  else if(n%2==0){
-	n = n/2; ctr++;	}
+  else if((n&1)==0){
+	n = (n >> 1); ctr++;	}
 else{
-n = (3*n+1)/2; ctr+= 2;
+n = n + (n >> 1) + 1; ++++ctr;
 
 }
 	}
@@ -114,14 +122,6 @@ void computeCacheValues() {
 for(int ind = 1; ind < LENGTH_CACHE; ind++){
     cache[ind] = CycleLength(ind); 
 }
-
-/*int index;
-while(index <= 10000){
-  for(int i = 0; i < 100; i++)
-	cache[index+i] = maxLength(index+i);
-
-index += 100;
-}*/
 
 }
 /**
@@ -143,15 +143,13 @@ void eval () {
   v = 0;
 int maxCycleLength = 0;
 if(i<=j){
-	for(int a = i; a<=j; a++){
-		       // maxCycleLength  = CycleLength(a);
+	for(int a = i; a<=j; a++){	
 			maxCycleLength  = CycleLengthwithCache(a);
 			if(maxCycleLength > v) v = maxCycleLength;
 		}
 	}
 else{
-	for(int a = j; a<=i; a++){
-		//maxCycleLength  = CycleLength(a);
+	for(int a = j; a<=i; a++){		
 		maxCycleLength  = CycleLengthwithCache(a);
 		if(maxCycleLength >v) v = maxCycleLength;
 		}
@@ -179,12 +177,12 @@ int main () {
     ios_base::sync_with_stdio(false);     // turn off synchronization with C I/O
     #ifdef TEST
         using namespace CppUnit;
+	computeCacheValues();
         TextTestRunner tr;
         tr.addTest(TestCollatz::suite());
         tr.run();
     #else	
-	computeCacheValues();
-	//printCache();
+	computeCacheValues();	
         while (read(cin)) {
             eval();
             print(cout);}
