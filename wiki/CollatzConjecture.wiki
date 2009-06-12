@@ -22,13 +22,9 @@ For example, consider the cycle length computation of 5.
 
 Hence, the cycle length of 5 is 6.
 
-
+==Implementation==
 In order to the reduce the number of computations for odd numbers, we did n = (3*n+!)/2 and increased the counter for cycle length by 2.
 
 In this project, my partner and I have decided to use a cache to speed up the computation of the Collatz conjecture on numbers between 0 and 1000000.
 
  
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
