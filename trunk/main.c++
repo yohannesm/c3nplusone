@@ -51,20 +51,27 @@ int v;
 value of 1 maps to cache[0] so it will be off by one
 generally the value of n maps to cache[n-1]
  */
-const int LENGTH_CACHE = 65001;
-int cache[LENGTH_CACHE];
-int CycleLength(int n);
 
-/*
+/**
+ * Length of the cache
+ */
+const int LENGTH_CACHE = 65001;
+
+/**
+ * An array used to store previously computed values of cyclelength from 1 to 65000 
+ */
+int cache[LENGTH_CACHE];
+
+
 /**
 * Prints the values in cache. This method was used to assist in debugging.
-
+*/
 
 void printCache() {
 for(int val = 1; val < LENGTH_CACHE; val++)
     std::cout << "i= " << val << " maxL= " << cache[val] << " " << std::endl;
 }
-*/
+
 
 /**
  * Cyclelength function
