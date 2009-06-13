@@ -52,6 +52,54 @@ struct TestCollatz : TestFixture {
         CPPUNIT_ASSERT(b == true);
         CPPUNIT_ASSERT(i ==    5);
         CPPUNIT_ASSERT(j ==   999);}
+
+
+    
+// ----
+    // CycleLength
+    // ----
+
+    void test_maxLength1 () {
+        int res = 6;
+        int act = CycleLength(5);
+        CPPUNIT_ASSERT(res ==  act);}
+   void test_maxLength2 () {
+        int res = 16;
+        int act =CycleLength(22);
+        CPPUNIT_ASSERT(res ==  act);}
+ void test_maxLength3 () {
+        int res = 20;
+        int act = CycleLength(9);
+        CPPUNIT_ASSERT(res ==  act);}
+ void test_maxLength4 () {
+        int res = 17;
+        int act = CycleLength(7);
+        CPPUNIT_ASSERT(res ==  act);}
+
+    // CycleLength
+    // ----
+
+    void test_maxLengthW1 () {
+        int res = 6;
+        int act = CycleLengthwithCache(5);
+        CPPUNIT_ASSERT(res ==  act);}
+   void test_maxLengthW2 () {
+        int res = 16;
+        int act = CycleLengthwithCache(22);
+        CPPUNIT_ASSERT(res ==  act);}
+ void test_maxLengthW3 () {
+        int res = 20;
+        int act = CycleLengthwithCache(9);
+        CPPUNIT_ASSERT(res ==  act);}
+ void test_maxLengthW4 () {
+        int res = 17;
+        int act = CycleLengthwithCache(7);
+        CPPUNIT_ASSERT(res ==  act);}
+void test_maxLengthW5 () {
+        int res = 50;
+        int act = CycleLengthwithCache(999);
+        CPPUNIT_ASSERT(res ==  act);}
+
     // ----
     // eval
     // ----
@@ -155,6 +203,8 @@ struct TestCollatz : TestFixture {
         CPPUNIT_ASSERT(v == 259);}
 
 
+
+
     // -----
     // print
     // -----
@@ -200,6 +250,15 @@ struct TestCollatz : TestFixture {
     CPPUNIT_TEST(test_read1);
     CPPUNIT_TEST(test_read2);
     CPPUNIT_TEST(test_read3);
+    CPPUNIT_TEST(test_maxLength1);
+    CPPUNIT_TEST(test_maxLength2);
+    CPPUNIT_TEST(test_maxLength3);
+    CPPUNIT_TEST(test_maxLength4);
+    CPPUNIT_TEST(test_maxLengthW1);
+    CPPUNIT_TEST(test_maxLengthW2);
+    CPPUNIT_TEST(test_maxLengthW3);
+    CPPUNIT_TEST(test_maxLengthW4);
+    CPPUNIT_TEST(test_maxLengthW5);
     CPPUNIT_TEST(test_eval1);
     CPPUNIT_TEST(test_eval2);
     CPPUNIT_TEST(test_eval3);
