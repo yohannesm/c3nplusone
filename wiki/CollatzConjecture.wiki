@@ -24,4 +24,4 @@ Hence, the cycle length of 5 is 6.
 ==Implementation==
 In order to optimize the algorithm, we used shifting for division and multiplication. When checking for odd or even number, we used the bitwise and operator to check if the least significant bit was a 1 or a 0 instead of a modulus operation. 
 
-We used an eager cache of size 65001 to compute the cycle lengths of numbers from 1 to 65000. This cache was used to assist the computation of cycle lengths of higher numbers.
+We used an global non-static array of size 65001 as an eager cache to compute the cycle lengths of numbers from 1 to 65000. This cache was used to assist the computation of cycle lengths of higher numbers.
