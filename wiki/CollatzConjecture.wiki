@@ -1,4 +1,4 @@
-This article describes a possible approach to solving the Collatz conjecture for numbers between 0 to 1000000.
+This article describes a possible approach to solving the Collatz conjecture for numbers between 1 to 1000000.
 
 ==Introduction==
 
@@ -22,8 +22,6 @@ For example, consider the cycle length computation of 5.
 Hence, the cycle length of 5 is 6.
 
 ==Implementation==
-In order to the reduce the number of computations for odd numbers, we did n = (3*n+!)/2 and increased the counter for cycle length by 2.
+In order to optimize the algorithm, we used shifting for division and multiplication. When checking for odd or even number, we used the bitwise and operator to check if the least significant bit was a 1 or a 0 instead of a modulus operation. 
 
-In this project, my partner and I have decided to use a cache to speed up the computation of the Collatz conjecture on numbers between 0 and 1000000.
-
- 
+We used an eager cache of size 65001 to compute the cycle lengths of numbers from 1 to 65000. This cache was used to assist the computation of cycle lengths of higher numbers.
