@@ -202,8 +202,26 @@ void test_maxLengthW5 () {
         eval();
         CPPUNIT_ASSERT(v == 259);}
 
+     void test_eval15 () {
+        i = 100000;
+        j = 200000;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 383);}
 
+     void test_eval16 () {
+        i = 300000;
+        j = 800000;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 509);}
 
+     void test_eval17 () {
+        i = 1;
+        j = 1000000;
+        v = 0;
+        eval();
+        CPPUNIT_ASSERT(v == 525);}
 
     // -----
     // print
@@ -273,6 +291,9 @@ void test_maxLengthW5 () {
     CPPUNIT_TEST(test_eval12);
     CPPUNIT_TEST(test_eval13);
     CPPUNIT_TEST(test_eval14);
+    CPPUNIT_TEST(test_eval15);
+    CPPUNIT_TEST(test_eval16);
+    CPPUNIT_TEST(test_eval17);
     CPPUNIT_TEST(test_print);
     CPPUNIT_TEST(test_print1);
     CPPUNIT_TEST(test_print2);
