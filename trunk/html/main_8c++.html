@@ -24,9 +24,9 @@
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#2b22b004d6e461bef27a8714dc690a75">printCache</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#41c145899090616d7737724f8788dc17">CycleLength</a> (int n)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#31775b0da984b4002767b1a4fae51740">CycleLength</a> (unsigned int n)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#9244cd5f5fc8d59688c59d55d46db905">CycleLengthwithCache</a> (int n)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#ed61f7056341e19afeb89fe57d41ebbd">CycleLengthwithCache</a> (unsigned int n)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#bc90c9689924efdfedba6b019772d5c8">computeCacheValues</a> ()</td></tr>
 
@@ -43,11 +43,11 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#37d972ae0b47b9099e30983131d31916">j</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#c8859e8c1ce357c4c8b37bbb1936ba1c">v</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#adebf697626277c9df88e93c621a4e79">v</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#ed9405cc5ca66a2c7c4a9fbbd6fe7e9d">LENGTH_CACHE</a> = 65001</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#b4e7d269535357e856ea748eb28b74e6">LENGTH_CACHE</a> = 100001</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#6097a18c3f890453bd92db398018c71f">cache</a> [<a class="el" href="main_8c++.html#ed9405cc5ca66a2c7c4a9fbbd6fe7e9d">LENGTH_CACHE</a>]</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c++.html#bd16c11ee35d3618c9478b924db0add0">cache</a> [<a class="el" href="main_8c++.html#b4e7d269535357e856ea748eb28b74e6">LENGTH_CACHE</a>]</td></tr>
 
 </table>
 <hr><h2>Function Documentation</h2>
@@ -70,14 +70,14 @@
 compute the values for the cache. 
 </div>
 </div><p>
-<a class="anchor" name="41c145899090616d7737724f8788dc17"></a><!-- doxytag: member="main.c++::CycleLength" ref="41c145899090616d7737724f8788dc17" args="(int n)" -->
+<a class="anchor" name="31775b0da984b4002767b1a4fae51740"></a><!-- doxytag: member="main.c++::CycleLength" ref="31775b0da984b4002767b1a4fae51740" args="(unsigned int n)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int CycleLength           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
+          <td class="paramtype">unsigned int&nbsp;</td>
           <td class="paramname"> <em>n</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td width="100%"></td>
@@ -96,14 +96,14 @@ Cyclelength function computes the length of the number N for 3n+1 problem <dl co
 
 </div>
 </div><p>
-<a class="anchor" name="9244cd5f5fc8d59688c59d55d46db905"></a><!-- doxytag: member="main.c++::CycleLengthwithCache" ref="9244cd5f5fc8d59688c59d55d46db905" args="(int n)" -->
+<a class="anchor" name="ed61f7056341e19afeb89fe57d41ebbd"></a><!-- doxytag: member="main.c++::CycleLengthwithCache" ref="ed61f7056341e19afeb89fe57d41ebbd" args="(unsigned int n)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int CycleLengthwithCache           </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
+          <td class="paramtype">unsigned int&nbsp;</td>
           <td class="paramname"> <em>n</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td width="100%"></td>
@@ -119,6 +119,11 @@ Cyclelength function computes the length of the number N for 3n+1 problem aided 
   </table>
 </dl>
 <dl compact><dt><b>Returns:</b></dt><dd>Cycle length of the integer n computed with the assistance of a cache </dd></dl>
+<dl compact><dt><b>Exceptions:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>if</em>&nbsp;</td><td>n is greater than max_int then throw n </td></tr>
+  </table>
+</dl>
 
 </div>
 </div><p>
@@ -221,12 +226,12 @@ reads an int into i and j <dl compact><dt><b>Returns:</b></dt><dd>true if that s
 </div>
 </div><p>
 <hr><h2>Variable Documentation</h2>
-<a class="anchor" name="6097a18c3f890453bd92db398018c71f"></a><!-- doxytag: member="main.c++::cache" ref="6097a18c3f890453bd92db398018c71f" args="[LENGTH_CACHE]" -->
+<a class="anchor" name="bd16c11ee35d3618c9478b924db0add0"></a><!-- doxytag: member="main.c++::cache" ref="bd16c11ee35d3618c9478b924db0add0" args="[LENGTH_CACHE]" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="main_8c++.html#6097a18c3f890453bd92db398018c71f">cache</a>[<a class="el" href="main_8c++.html#ed9405cc5ca66a2c7c4a9fbbd6fe7e9d">LENGTH_CACHE</a>]          </td>
+          <td class="memname">unsigned int <a class="el" href="main_8c++.html#bd16c11ee35d3618c9478b924db0add0">cache</a>[<a class="el" href="main_8c++.html#b4e7d269535357e856ea748eb28b74e6">LENGTH_CACHE</a>]          </td>
         </tr>
       </table>
 </div>
@@ -266,12 +271,12 @@ input: don't change after reading
 input: don't change after reading 
 </div>
 </div><p>
-<a class="anchor" name="ed9405cc5ca66a2c7c4a9fbbd6fe7e9d"></a><!-- doxytag: member="main.c++::LENGTH_CACHE" ref="ed9405cc5ca66a2c7c4a9fbbd6fe7e9d" args="" -->
+<a class="anchor" name="b4e7d269535357e856ea748eb28b74e6"></a><!-- doxytag: member="main.c++::LENGTH_CACHE" ref="b4e7d269535357e856ea748eb28b74e6" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int <a class="el" href="main_8c++.html#ed9405cc5ca66a2c7c4a9fbbd6fe7e9d">LENGTH_CACHE</a> = 65001          </td>
+          <td class="memname">const unsigned int <a class="el" href="main_8c++.html#b4e7d269535357e856ea748eb28b74e6">LENGTH_CACHE</a> = 100001          </td>
         </tr>
       </table>
 </div>
@@ -281,12 +286,12 @@ input: don't change after reading
 Length of the cache 
 </div>
 </div><p>
-<a class="anchor" name="c8859e8c1ce357c4c8b37bbb1936ba1c"></a><!-- doxytag: member="main.c++::v" ref="c8859e8c1ce357c4c8b37bbb1936ba1c" args="" -->
+<a class="anchor" name="adebf697626277c9df88e93c621a4e79"></a><!-- doxytag: member="main.c++::v" ref="adebf697626277c9df88e93c621a4e79" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="testEval_8c++.html#c8859e8c1ce357c4c8b37bbb1936ba1c">v</a>          </td>
+          <td class="memname">unsigned int <a class="el" href="testEval_8c++.html#c8859e8c1ce357c4c8b37bbb1936ba1c">v</a>          </td>
         </tr>
       </table>
 </div>
@@ -296,7 +301,7 @@ Length of the cache
 output 
 </div>
 </div><p>
-<hr size="1"><address style="align: right;"><small>Generated on Fri Jun 12 19:09:52 2009 by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Sun Jun 14 17:18:41 2009 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>
