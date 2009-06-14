@@ -44,7 +44,7 @@ int j;
 /**
  * output
  */
-int v;
+unsigned int v;
 
 /**
  * cache : Intially stores the cycle lengths of integers between 1 and 10000. If values exceed 10000, then compute the cycle length and replace the least recetly used value in cache 
@@ -55,12 +55,12 @@ generally the value of n maps to cache[n-1]
 /**
  * Length of the cache
  */
-const int LENGTH_CACHE = 65001;
+const unsigned int LENGTH_CACHE = 100001;
 
 /**
  * An array used to store previously computed values of cyclelength from 1 to 65000 
  */
-int cache[LENGTH_CACHE];
+unsigned int cache[LENGTH_CACHE];
 
 
 /**
@@ -68,7 +68,7 @@ int cache[LENGTH_CACHE];
 */
 
 void printCache() {
-for(int val = 1; val < LENGTH_CACHE; val++)
+for(unsigned int val = 1; val < LENGTH_CACHE; val++)
     std::cout << "i= " << val << " maxL= " << cache[val] << " " << std::endl;
 }
 
@@ -79,9 +79,9 @@ for(int val = 1; val < LENGTH_CACHE; val++)
  *@param int n  
  *@return Cycle length of the integer n computed without a cache
  */
-int CycleLength(int n){
+int CycleLength(unsigned int n){
 assert(n>=1);
-int ctr = 1;
+unsigned int ctr = 1;
 while(n!=1){
   if((n&1)==0){
 	n = (n >> 1); ctr++;}
@@ -99,17 +99,19 @@ return ctr;
  aided with a cache for faster computation
  *@param int n  
  *@return Cycle length of the integer n computed with the assistance of a cache  
+ *@exception if n is greater than max_int then throw n
  */
-int CycleLengthwithCache(int n){
+int CycleLengthwithCache(unsigned int n){
+if (n >= 2147483647) {
+throw n; 
+}
 assert(n>=1);
-
-int ctr = 1;
-if(n < LENGTH_CACHE){    
+unsigned int ctr = 1;
+if(n < LENGTH_CACHE && n>0){    
     return cache[n];}
-
 while(n!=1){
-if(n < LENGTH_CACHE){	
-     return ctr += cache[n] - 1;}
+if(n < LENGTH_CACHE && n>0){	
+     return ctr += (cache[n] - 1);}
   else if((n&1)==0){
 	n = (n >> 1); ctr++;	}
 else{
@@ -126,7 +128,7 @@ return ctr;
  */
 void computeCacheValues() {
 
-for(int ind = 1; ind < LENGTH_CACHE; ind++){
+for(unsigned int ind = 1; ind < LENGTH_CACHE; ind++){
     cache[ind] = CycleLength(ind); 
 }
 
@@ -147,8 +149,10 @@ bool read (std::istream& in) {
  * and stores the result in v
  */
 void eval () {
+
   v = 0;
-int maxCycleLength = 0;
+unsigned int maxCycleLength = 0;
+
 if(i<=j){
 	for(int a = i; a<=j; a++){	
 			maxCycleLength  = CycleLengthwithCache(a);
@@ -158,10 +162,14 @@ if(i<=j){
 else{
 	for(int a = j; a<=i; a++){		
 		maxCycleLength  = CycleLengthwithCache(a);
-		if(maxCycleLength >v) v = maxCycleLength;
+		if(maxCycleLength > v) v = maxCycleLength;
 		}
 	}
+
+
+
 assert(v>0);
+
 }
 /**
  * prints the values of i, j, and v
@@ -191,7 +199,13 @@ int main () {
     #else	
 	computeCacheValues();	
         while (read(cin)) {
+	    try{
             eval();
+	    }
+ 	    catch (const int& e){
+		std::cerr << "n exceeds the maximum value of int " << e << endl;
+	}
+	  
             print(cout);}
 
     #endif // TEST
